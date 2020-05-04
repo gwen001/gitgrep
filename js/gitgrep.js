@@ -11,7 +11,7 @@ function init_search()
 {
     $('#results-container').html( '' );
     $('#search-form').find('#page').val( 1 );
-    window.setTimeout( search, 1000 );
+    search();
 }
 
 function search()
