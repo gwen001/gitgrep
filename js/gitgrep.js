@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    if( $(window).width() < 1400 ) {
+        $('#site-infos').hide();
+    }
     $('#search-filter').focus();
     $('#search-form').submit(function(e){
         e.preventDefault();
@@ -57,14 +60,43 @@ function search()
 
 function generate_code( matches )
 {
-    code = '';
-    n_match = matches.length - 1;
+    var code = '';
+    var n_match = matches.length - 1;
+
     $.each(matches,function(index) {
         code = code + matches[index][0] + '<span class="code-highlight">' + matches[index][1] + '</span>' + matches[index][2];
         if( index < n_match ) {
             code = code + '<br>---<br>';
         }
     });
+
+    return code;
+}
+
+function generate_code_with_lines( matches )
+{
+    var code = '';
+    var n_match = matches.length - 1;
+
+    $.each(matches,function(index) {
+
+        var start_line = matches[index][0];
+
+        for( var i=1 ; i<matches[index].length ; i++ ) {
+            code = code + '<div class="line-result">';
+            code = code + '<div class="line-number">' + (start_line+i-1) + '</div>';
+            code = code + '<div class="line-code">' + matches[index][i] + '</div>';
+            code = code + '</div>';
+        }
+
+        if( index < n_match ) {
+            code = code + '<div class="line-result">';
+            code = code + '<div class="line-number">&nbsp;</div>';
+            code = code + '<div class="line-code">---</div>';
+            code = code + '</div>';
+        }
+    });
+
     return code;
 }
 
@@ -82,7 +114,7 @@ function display_results( datas )
             clone.find('.link-file').attr( 'href', item['file_html_url'] );
             clone.find('.link-file').html( item['file_path'] );
             clone.find('.link-rawfile').attr( 'href', item['file_raw_url'] );
-            clone.find('.code').html( generate_code(item['matches']) );
+            clone.find('.code').html( generate_code_with_lines(item['matches']) );
             clone.find('.n-match').html( item['n_match']+' match(es)' );
             clone.removeClass('d-none');
             clone.appendTo( '#results-container' );

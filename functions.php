@@ -109,6 +109,29 @@ function get_raw_url( &$item )
 }
 
 
+// reorder output of preg_match to fit our needs
+function reorder_matches( $config, $code, $matches )
+{
+    $reorder = [];
+    $n_match = count( $matches );
+    
+    for( $i=0; $i<$n_match && $i<$config['max_result_displayed'] ; $i++ )
+    {
+        $prefix = get_prefix( $code, $matches[$i][0][1], $config['context_lines']+1 );
+        $suffix = get_suffix( $code, $matches[$i][0][1]+strlen($matches[$i][0][0]), $config['context_lines'] );
+        
+        $start_line = substr_count( $code, "\n", 0, $matches[$i][0][1]-strlen($prefix) ) + 1;
+        $final_string = $prefix . '<span class="code-highlight">' . $matches[$i][0][0] . '</span>' . $suffix;
+
+        $tmp = array_merge( [$start_line], explode("\n",$final_string) );
+        
+        $reorder[] = $tmp;
+    }
+
+    return $reorder;
+}
+
+
 function get_prefix( $code, $pos, $n_lines )
 {
     $code = substr( $code, 0, $pos );
@@ -151,42 +174,6 @@ function format_string( $str, $max_length=0 )
     }
 
     return $str;
-}
-
-
-// reorder output of preg_match to fit our needs
-function reorder_matches( $config, $code, $matches )
-{
-    $reorder = [];
-    $n_match = count( $matches );
-    
-    for( $i=0; $i<$n_match && $i<$config['max_result_displayed'] ; $i++ )
-    {
-        $prefix = get_prefix( $code, $matches[$i][0][1], $config['context_lines']+1 );
-        $suffix = get_suffix( $code, $matches[$i][0][1]+strlen($matches[$i][0][0]), $config['context_lines'] );
-        
-        $tmp= [
-            format_string( $prefix, -$config['fix_max_length'] ),
-            format_string( $matches[$i][0][0] ),
-            format_string( $suffix, $config['fix_max_length'] ),
-        ];
-
-        $reorder[] = $tmp;
-    }
-
-    // $reorder = [];
-    // $n_match = count( $matches[0] );
-
-    // for( $i=0; $i<$n_match && $i<$max_result_displayed ; $i++ ) {
-    //     $tmp= [
-    //         htmlentities( utf8_encode($matches[1][$i]) ),
-    //         htmlentities( utf8_encode($matches[2][$i]) ),
-    //         htmlentities( utf8_encode($matches[3][$i]) ),
-    //     ];
-    //     $reorder[] = $tmp;
-    // }
-
-    return $reorder;
 }
 
 

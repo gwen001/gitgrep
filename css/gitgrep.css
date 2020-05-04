@@ -64,3 +64,18 @@ h1 {
     color: #555;
     font-size: 0.8rem;
 }
+.result-single .code .line-number {
+    color: #AAA;
+    float: left;
+    min-width: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+.result-single .code .line-number:before {
+    content: "\00A0";
+ }
+.result-single .code .line-code:before {
+    content: "\00A0";
+ }
+ 
