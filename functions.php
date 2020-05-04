@@ -122,7 +122,7 @@ function reorder_matches( $config, $code, $matches )
         $suffix = get_suffix( $code, $matches[$i][0][1]+strlen($matches[$i][0][0]), $config['context_lines'] );
         
         $start_line = substr_count( $code, "\n", 0, $matches[$i][0][1]-strlen($prefix) ) + 1;
-        $final_string = utf8_encode( $prefix . '<span class="code-highlight">' . $matches[$i][0][0] . '</span>' . $suffix );
+        $final_string = htmlentities( utf8_encode( $prefix . '<span class="code-highlight">' . $matches[$i][0][0] . '</span>' . $suffix ) );
 
         $tmp = array_merge( [$start_line], explode("\n",$final_string) );
 
