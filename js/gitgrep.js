@@ -7,12 +7,6 @@ $(document).ready(function(){
         e.preventDefault();
         init_search();
     });
-    // $('#btn-search').click(function(){
-    //     init_search();
-    // });
-    // $('#btn-more').click(function(){
-    //     search();
-    // });
 });
 
 function init_search()

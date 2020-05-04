@@ -18,9 +18,9 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         <meta name="keywords" content="development,security,researcher,bugbounty,tools,github,regexp,secrets">
 
         <meta name="twitter:card" content="summary_large_image"/>
-        <meta name="twitter:image" content="http://10degres.net/assets/img/header-background.jpg"/>
+        <meta name="twitter:image" content="http://gitgrep.me/img/preview.jpg"/>
 
-        <meta name="twitter:title" content="10degres"/>
+        <meta name="twitter:title" content="git|grep"/>
         <meta name="twitter:description" content="git|grep - regexp search over github search"/>
         <meta name="twitter:site" content="@gitgrep"/>
         <meta name="twitter:creator" content="@gwendallecoguic"/>
