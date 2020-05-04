@@ -10,6 +10,8 @@ include( 'functions.php' );
         'min_result' => 10,
         'max_result_displayed' => 3,
         'github_tokens' => 10,
+        'context_lines' => 3,
+        'fix_max_length' => 350,
     ];
 
     $output = [
@@ -53,6 +55,7 @@ include( 'functions.php' );
 
     $search_filter = urlencode( $search_filter );
     $search_regexp_compiled = '#(.{0,100})(' . $search_regexp . ')(.{0,100})#i';
+    $search_regexp_compiled = '~' . $search_regexp . '~i';
 }
 // ...
 

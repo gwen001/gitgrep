@@ -83,13 +83,13 @@ function search_regexp( $config, $items, $search_regexp )
 
         if( strlen($code) )
         {
-            $m = preg_match_all( $search_regexp, $code, $matches );
+            $m = preg_match_all( $search_regexp, $code, $matches, PREG_SET_ORDER|PREG_OFFSET_CAPTURE );
             
             if( $m && is_array($matches) && count($matches) )
             {
-                $n_match = count( $matches[0] );
-                $matches = reorder_matches( $matches, $config['max_result_displayed'] );
-                $t_found[] = create_output_item( $items[$i], $matches, $n_match );
+                $items[$i]['n_match'] = count( $matches );
+                $matches = reorder_matches( $config, $code, $matches );
+                $t_found[] = create_output_item( $items[$i], $matches );
             }
         }
     }
@@ -109,27 +109,89 @@ function get_raw_url( &$item )
 }
 
 
+function get_prefix( $code, $pos, $n_lines )
+{
+    $code = substr( $code, 0, $pos );
+    $code = strrev( $code );
+
+    for( $i=0 ; $i<$n_lines ; $i++ ) {
+        $pos = strpos( $code, "\n", $pos ) + 1;
+    };
+
+    $prefix = substr( $code, 0, $pos );
+
+    return ltrim(strrev($prefix));
+}
+
+
+function get_suffix( $code, $pos, $n_lines )
+{
+    $code = substr( $code, $pos );
+    $pos = 0;
+
+    for( $i=0 ; $i<$n_lines ; $i++ ) {
+        $pos = strpos( $code, "\n", $pos ) + 1;
+    };
+
+    $suffix = substr( $code, 0, $pos );
+
+    return rtrim($suffix);
+}
+
+
+function format_string( $str, $max_length=0 )
+{
+    $str = htmlentities( utf8_encode($str) );
+    $str = str_replace( "\n", "<br>\n", $str );
+    
+    if( $max_length > 0 ) {
+        $str = substr( $str, 0, $max_length );
+    } elseif( $max_length < 0 ) {
+        $str = substr( $str, $max_length );
+    }
+
+    return $str;
+}
+
+
 // reorder output of preg_match to fit our needs
-function reorder_matches( $matches, $max_result_displayed )
+function reorder_matches( $config, $code, $matches )
 {
     $reorder = [];
-    $n_match = count( $matches[0] );
-
-    for( $i=0; $i<$n_match && $i<$max_result_displayed ; $i++ ) {
+    $n_match = count( $matches );
+    
+    for( $i=0; $i<$n_match && $i<$config['max_result_displayed'] ; $i++ )
+    {
+        $prefix = get_prefix( $code, $matches[$i][0][1], $config['context_lines']+1 );
+        $suffix = get_suffix( $code, $matches[$i][0][1]+strlen($matches[$i][0][0]), $config['context_lines'] );
+        
         $tmp= [
-            htmlentities( utf8_encode($matches[1][$i]) ),
-            htmlentities( utf8_encode($matches[2][$i]) ),
-            htmlentities( utf8_encode($matches[3][$i]) ),
+            format_string( $prefix, -$config['fix_max_length'] ),
+            format_string( $matches[$i][0][0] ),
+            format_string( $suffix, $config['fix_max_length'] ),
         ];
+
         $reorder[] = $tmp;
     }
+
+    // $reorder = [];
+    // $n_match = count( $matches[0] );
+
+    // for( $i=0; $i<$n_match && $i<$max_result_displayed ; $i++ ) {
+    //     $tmp= [
+    //         htmlentities( utf8_encode($matches[1][$i]) ),
+    //         htmlentities( utf8_encode($matches[2][$i]) ),
+    //         htmlentities( utf8_encode($matches[3][$i]) ),
+    //     ];
+    //     $reorder[] = $tmp;
+    // }
 
     return $reorder;
 }
 
 
 // keep only interesting things for the front output
-function create_output_item( $item, $matches, $n_match )
+function create_output_item( $item, $matches )
 {
     $tmp = [
         'file_path' => $item['path'],
@@ -140,7 +202,7 @@ function create_output_item( $item, $matches, $n_match )
         'owner_login' => $item['repository']['owner']['login'],
         'owner_html_url' => $item['repository']['owner']['html_url'],
         'owner_avatar_url' => $item['repository']['owner']['avatar_url'],
-        'n_match' => $n_match,
+        'n_match' => $item['n_match'],
         'matches' => $matches,
     ];
 
