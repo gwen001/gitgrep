@@ -57,9 +57,10 @@ h1 {
     padding: 5px;
 }
 .result-single .code .code-highlight {
-    color: #2B580C;
+    background-color: #FFF5B1;
+    font-weight: bold;
 }
 .result-single .n-match {
-    color: #AAA;
+    color: #555;
     font-size: 0.8rem;
 }
