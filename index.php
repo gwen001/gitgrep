@@ -52,7 +52,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                     <a href="https://www.buymeacoffee.com/gwendallecoguic" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" width="217" ></a>
                 </p>
                 <p>
-                    Found a bug? Feel free to open an issue on <a href="https://github.com/gwen001" target="_blank">the official repository</a>.
+                    Found a bug? Feel free to open an issue on <a href="https://github.com/gwen001/gitgrep" target="_blank">the official repository</a>.
                 </p>
             </div>
         </div>
