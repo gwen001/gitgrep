@@ -62,6 +62,7 @@ function github_search( $config, $search_filter, $page )
 function search_regexp( $config, $items, $search_regexp )
 {
     $n_items = count( $items );
+    $t_found = [];
     $t_curl = [];
     $master = curl_multi_init();
 

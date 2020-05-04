@@ -115,7 +115,11 @@ function display_results( datas )
             clone.find('.link-file').html( item['file_path'] );
             clone.find('.link-rawfile').attr( 'href', item['file_raw_url'] );
             clone.find('.code').html( generate_code_with_lines(item['matches']) );
-            clone.find('.n-match').html( item['n_match']+' match(es)' );
+            var nmatch = item['n_match']+' match';
+            if( item['n_match'] > 1 ) {
+                nmatch = nmatch + 'es';
+            }
+            clone.find('.n-match').html( nmatch );
             clone.removeClass('d-none');
             clone.appendTo( '#results-container' );
         }
