@@ -1,7 +1,12 @@
 $(document).ready(function(){
-    $('#btn-search').click(function(){
+    $('#search-filter').focus();
+    $('#search-form').submit(function(e){
+        e.preventDefault();
         init_search();
     });
+    // $('#btn-search').click(function(){
+    //     init_search();
+    // });
     // $('#btn-more').click(function(){
     //     search();
     // });
