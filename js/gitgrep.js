@@ -47,7 +47,7 @@ function search()
 
     request.fail(function( jqXHR, textStatus ) {
         $('#search-spinner').addClass('d-none');
-        $('#result-error').html( 'Something went wrong!' );
+        $('#result-error').html( 'something went wrong' );
         $('#result-error').removeClass('d-none');
     });
 }

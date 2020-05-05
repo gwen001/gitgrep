@@ -71,7 +71,7 @@ include( 'functions.php' );
             if( $n_exception >= $config['max_exception'] ) {
                 // too many errors or no result, get out!
                 $output['error'] = true;
-                $output['message'] = 'api limits exceeded';
+                $output['message'] = 'api limit exceeded';
                 break;
             }
             continue;
