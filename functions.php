@@ -35,7 +35,7 @@ function github_search( $config, $search_filter, $page )
 {
     $n_tokens = count($config['tokens']) - 1;
     $headers = [ 'Authorization: token '.$config['tokens'][rand(0,$n_tokens)] ];
-    $url = 'https://api.github.com/search/code?s=indexed&type=Code&o=desc&q=' . $search_filter . '&page=' . $page;
+    $url = 'https://api.github.com/search/code?per_page=100&s=indexed&type=Code&o=desc&q=' . $search_filter . '&page=' . $page;
     // echo 'calling search_code: ' . $url ."\n";
 
     $c = curl_init();
@@ -85,7 +85,7 @@ function search_regexp( $config, $items, $search_regexp )
         if( strlen($code) )
         {
             $m = preg_match_all( $search_regexp, $code, $matches, PREG_SET_ORDER|PREG_OFFSET_CAPTURE );
-            
+
             if( $m && is_array($matches) && count($matches) )
             {
                 $items[$i]['n_match'] = count( $matches );
@@ -115,18 +115,18 @@ function reorder_matches( $config, $code, $matches )
 {
     $reorder = [];
     $n_match = count( $matches );
-    
+
     for( $i=0; $i<$n_match && $i<$config['max_result_displayed'] ; $i++ )
     {
         $prefix = get_prefix( $code, $matches[$i][0][1], $config['context_lines']+1 );
         $suffix = get_suffix( $code, $matches[$i][0][1]+strlen($matches[$i][0][0]), $config['context_lines'] );
-        
+
         $start_line = substr_count( $code, "\n", 0, $matches[$i][0][1]-strlen($prefix) ) + 1;
         $final_string = format_string($prefix,$config['fix_max_length']) . '<span class="code-highlight">' . format_string($matches[$i][0][0]) . '</span>' . format_string($suffix,$config['fix_max_length']);
 
         $tmp = array_merge( [$start_line], explode("\n",$final_string) );
 
-        
+
         $reorder[] = $tmp;
     }
 
@@ -168,7 +168,7 @@ function format_string( $str, $max_length=0 )
 {
     $str = htmlentities( utf8_encode($str) );
     $str = str_replace( "\n", "<br>\n", $str );
-    
+
     if( $max_length > 0 ) {
         $str = substr( $str, 0, $max_length );
     } elseif( $max_length < 0 ) {

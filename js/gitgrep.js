@@ -30,12 +30,15 @@ function search()
     });
 
     request.done(function( datas ) {
-        $('#search-spinner').addClass('d-none');
         if( datas['error'] ) {
+            $('#search-spinner').addClass('d-none');
             $('#result-error').html( datas['message'] );
             $('#result-error').removeClass('d-none');
             $('#search-form').find('#page').val( 1 );
-        } else if( datas['items'].length ) {
+        } else {
+            // if( datas['items'].length ) {
+                // $('#search-spinner').addClass('d-none');
+            // }
             // $('#btn-more').removeClass('d-none');
             $('#search-form').find('#page').val( datas['page'] );
             window.setTimeout( search, 1000 );

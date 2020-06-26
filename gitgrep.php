@@ -36,7 +36,7 @@ include( 'functions.php' );
 
 
 // handle POST params
-{ 
+{
     if( !isset($_POST['search_filter']) || ($search_filter=trim($_POST['search_filter'])) == '' ) {
         $output['error'] = true;
         $output['message'] = 'missing search param';
@@ -95,9 +95,9 @@ include( 'functions.php' );
         }
 
         // we have enough results to display, get out!
-        if( $n_result >= $config['min_result'] ) {
+        // if( $n_result >= $config['min_result'] ) {
             break;
-        }
+        // }
     }
 }
 // ...

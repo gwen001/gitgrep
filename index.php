@@ -4,6 +4,18 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
     include( 'gitgrep.php' );
 }
 
+
+if( !isset($_GET['s']) || ($s=trim($_GET['s'])) == '' ) {
+    $s = 'filename:wp-config.php';
+} else {
+    $init_run = true;
+}
+if( !isset($_GET['r']) || ($r=trim($_GET['r'])) == '' ) {
+    $r = "DB_PASSWORD',\s*'[^']{4,}";
+} else {
+    $init_run = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -77,5 +89,12 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
         <script src="/js/jquery-3.4.1.min.js" type="text/javascript"></script>
         <script src="/js/gitgrep.js" type="text/javascript"></script>
+        <?php if( isset($init_run) ) { ?>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#search-form').submit();
+                });
+            </script>
+        <?php } ?>
     </body>
 </html>
