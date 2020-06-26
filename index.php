@@ -61,7 +61,7 @@ if( !isset($_GET['r']) || ($r=trim($_GET['r'])) == '' ) {
                     This webservice is my contribution to the security industry, if you like it, you can support my work.
                 </p>
                 <p class="text-center">
-                    <iframe src="https://github.com/sponsors/gwen001/button" title="Sponsor gwen001" height="35" width="107" style="border: 0;"></iframe>
+                    <a href="https://github.com/sponsors/gwen001" title="Sponsor gwen001"><img src="https://raw.githubusercontent.com/gwen001/pentest-tools/master/github-sponsor.jpg" alt="Sponsor gwen001" title="Sponsor gwen001"></a>
                 <p>
                     Found a bug? Feel free to open an issue on <a href="https://github.com/gwen001/gitgrep" target="_blank">the official repository</a>.
                 </p>
