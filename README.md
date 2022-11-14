@@ -12,9 +12,9 @@ Found a bug? Feel free to open an issue https://github.com/gwen001/gitgrep/issue
 
 ## Note
 
-This project has been abandoned for the favor of command line scripts, see:
-https://github.com/gwen001/github-search
-https://github.com/gwen001/github-endpoints
-https://github.com/gwen001/github-regexp
-https://github.com/gwen001/github-subdomains
+This project has been abandoned for the favor of command line scripts, see:  
+https://github.com/gwen001/github-search 
+https://github.com/gwen001/github-endpoints 
+https://github.com/gwen001/github-regexp 
+https://github.com/gwen001/github-subdomains 
 
