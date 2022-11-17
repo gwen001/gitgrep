@@ -19,7 +19,6 @@
 # Description
 
 [git|grep](http://gitgrep.me) is a single page website made with love, by hackers for hackers. It helps to find secrets on GitHub using his API.
-
 This webservice is my contribution to the security industry, if you like it, you can support my work.
 
 ---
