@@ -8,17 +8,18 @@
     <a href="https://twitter.com/intent/tweet?text=https%3a%2f%2fgithub.com%2fgwen001%2fgitgrep%2f" target="_blank"><img src="https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fgwen001%2Fgitgrep" alt="twitter badge"></a>
 </p>
 
-<p align="center">
+<!-- <p align="center">
     <img src="https://img.shields.io/github/stars/gwen001/gitgrep?style=social" alt="github stars badge">
     <img src="https://img.shields.io/github/watchers/gwen001/gitgrep?style=social" alt="github watchers badge">
     <img src="https://img.shields.io/github/forks/gwen001/gitgrep?style=social" alt="github forks badge">
-</p>
+</p> -->
 
 ---
 
 # Description
 
-[git|grep](http://gitgrep.me) is a single page website made with love, by hackers for hackers. It helps to find secrets on GitHub using his API.
+[git|grep](http://gitgrep.me) is a single page website made with love, by hackers for hackers.
+It helps to find secrets on GitHub using his API.
 This webservice is my contribution to the security industry, if you like it, you can support my work.
 
 ## Install
