@@ -21,6 +21,26 @@
 [git|grep](http://gitgrep.me) is a single page website made with love, by hackers for hackers. It helps to find secrets on GitHub using his API.
 This webservice is my contribution to the security industry, if you like it, you can support my work.
 
+## Install
+
+```
+git clone https://github.com/gwen001/gitgrep
+```
+
+Two ways to configure GitHub token(s):
+
+Apache vhost:
+```
+SetEnv GITHUB_TOKENS "token1,token2,..."
+```
+
+gitgrep.php:
+```
+$config = [
+    'tokens' => 'token1,token2,...',
+];
+```
+
 ## Note
 
 This project has been abandoned for the favor of command line scripts, see:  
