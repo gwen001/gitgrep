@@ -24,7 +24,7 @@ This webservice is my contribution to the security industry, if you like it, you
 
 ---
 
-<img src="https://raw.githubusercontent.com/gwen001/gitgrep/main/preview.png">
+<img src="https://raw.githubusercontent.com/gwen001/gitgrep/master/preview.png">
 
 ---
 
