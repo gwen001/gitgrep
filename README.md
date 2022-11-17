@@ -21,12 +21,6 @@
 [git|grep](http://gitgrep.me) is a single page website made with love, by hackers for hackers. It helps to find secrets on GitHub using his API.
 This webservice is my contribution to the security industry, if you like it, you can support my work.
 
----
-
-<img src="https://raw.githubusercontent.com/gwen001/gitgrep/master/preview.png">
-
----
-
 ## Note
 
 This project has been abandoned for the favor of command line scripts, see:  
@@ -34,6 +28,10 @@ https://github.com/gwen001/github-search
 https://github.com/gwen001/github-endpoints  
 https://github.com/gwen001/github-regexp  
 https://github.com/gwen001/github-subdomains  
+
+---
+
+<img src="https://raw.githubusercontent.com/gwen001/gitgrep/master/preview.png">
 
 ---
 
