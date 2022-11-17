@@ -27,7 +27,7 @@ This webservice is my contribution to the security industry, if you like it, you
 git clone https://github.com/gwen001/gitgrep
 ```
 
-Two ways to configure GitHub token(s):
+Choose your way to configure GitHub token(s):
 
 Apache vhost:
 ```
